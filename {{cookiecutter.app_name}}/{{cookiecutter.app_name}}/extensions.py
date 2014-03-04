@@ -17,3 +17,7 @@ migrate = Migrate()
 
 from flask.ext.cache import Cache
 cache = Cache()
+
+from flask.ext.mongokit import MongoKit
+dbm = MongoKit()
+

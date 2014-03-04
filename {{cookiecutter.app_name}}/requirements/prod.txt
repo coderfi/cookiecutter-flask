@@ -14,6 +14,11 @@ SQLAlchemy==0.8.3
 # Migrations
 Flask-Migrate>=1.0.0
 
+# NoSQL Database
+Flask-MongoKit==0.6
+mongokit==0.9.1.1
+pymongo==2.6.3
+
 # Forms
 Flask-WTF==0.9.3
 WTForms==1.0.5

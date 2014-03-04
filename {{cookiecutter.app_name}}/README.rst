@@ -8,11 +8,18 @@
 Quickstart
 ----------
 
+First, install `Virtualenv Wrapper<http://virtualenvwrapper.readthedocs.org/en/latest/>`_
+(and `Virtualenv<http://www.virtualenv.org/en/latest/>`_)
+
 ::
 
     git clone https://github.com/{{cookiecutter.github_username}}/{{ cookiecutter.app_name }}
     cd {{cookiecutter.app_name}}
-    pip install -r requirements/dev.txt
+
+    mkvirtualenv {{cookiecutter.app_name}}
+
+    python setup.py develop
+
     python manage.py db init
     python manage.py db migrate
     python manage.py db upgrade
@@ -33,7 +40,10 @@ To open the interactive shell, run ::
 
     python manage.py shell
 
-By default, you will have access to ``app``, ``db``, and the ``User`` model.
+By default, you will have access to ``app``.
+In addition to a SQLAlchemy ``db`` instance and the SQLAlchemy ``User`` model.
+As well as a MongoKit ``dbm`` instance and the MongoKit ``Task`` model
+(accessible via ``dbm.Task``)
 
 
 Running Tests

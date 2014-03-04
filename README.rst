@@ -20,6 +20,7 @@ Features
 - Bootstrap 3 and Font Awesome 4 with starter templates
 - Flask-SQLAlchemy with basic User model
 - Easy database migrations with Flask-Migrate
+- Flask-Mongokit with basic Task model
 - Flask-WTForms with login and registration forms
 - Flask-Login for authentication
 - Flask-Bcrypt for password hashing
@@ -31,6 +32,7 @@ Features
 - Caching using Flask-Cache
 - Useful debug toolbar
 - Utilizes best practices: `Blueprints <http://flask.pocoo.org/docs/blueprints/>`_ and `Application Factory <http://flask.pocoo.org/docs/patterns/appfactories/>`_ patterns
+- setup.py file
 
 Screenshots
 -----------

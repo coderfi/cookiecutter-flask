@@ -6,8 +6,8 @@ from flask_debugtoolbar import DebugToolbarExtension
 from {{cookiecutter.app_name}}.settings import ProdConfig
 from {{cookiecutter.app_name}}.assets import assets
 from {{cookiecutter.app_name}}.extensions import (db, login_manager, migrate,
-                                                    cache)
-from {{cookiecutter.app_name}} import public, user
+                                                  dbm, cache)
+from {{cookiecutter.app_name}} import public, user, task
 
 
 def create_app(config_object=ProdConfig):
@@ -26,6 +26,7 @@ def create_app(config_object=ProdConfig):
 
 def register_extensions(app):
     db.init_app(app)
+    dbm.init_app(app)
     login_manager.init_app(app)
     assets.init_app(app)
     toolbar = DebugToolbarExtension(app)
@@ -37,6 +38,7 @@ def register_extensions(app):
 def register_blueprints(app):
     app.register_blueprint(public.views.blueprint)
     app.register_blueprint(user.views.blueprint)
+    app.register_blueprint(task.views.blueprint)
     return None
 
 

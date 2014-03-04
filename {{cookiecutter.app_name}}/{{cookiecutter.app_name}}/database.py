@@ -3,10 +3,10 @@
 mixins.
 '''
 
-from .extensions import db
+from .extensions import db, dbm
 
 class CRUDMixin(object):
-    """Mixin that adds convenience methods for CRUD (create, read, update, delete)
+    """SQLAlchemy mixin that adds convenience methods for CRUD (create, read, update, delete)
     operations.
     """
     __table_args__ = {'extend_existing': True}
@@ -45,3 +45,31 @@ class CRUDMixin(object):
         '''Remove the record from the database.'''
         db.session.delete(self)
         return commit and db.session.commit()
+
+class CRUDMixinMongo(object):
+    """MongoKit mixin that adds convenience method for CRUD (create, read, update, delete)
+    operations.
+    """
+
+    @classmethod
+    def get_by_id(cls, id):
+        raise ValueError("TBI")
+
+    @classmethod
+    def create(cls, **kwargs):
+        '''Create a new record and save it the database.'''
+        raise ValueError("TBI")
+
+    def update(self, commit=True, **kwargs):
+        '''Update specific fields of a record.'''
+        raise ValueError("TBI")
+
+    def save(self, commit=True):
+        '''Save the record.'''
+        raise ValueError("TBI")
+
+    def delete(self, commit=True):
+        '''Remove the record from the database.'''
+        raise ValueError("TBI")
+
+

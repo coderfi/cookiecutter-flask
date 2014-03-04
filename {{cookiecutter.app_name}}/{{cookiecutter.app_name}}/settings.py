@@ -11,6 +11,13 @@ class Config(object):
     DEBUG_TB_INTERCEPT_REDIRECTS = False
     CACHE_TYPE = "simple"  # Can be "memcached", "redis", etc.
 
+    MONGODB_HOST = '127.0.0.1'
+    MONGODB_PORT = 27017
+    MONGODB_DATABASE = 'flask'
+    MONGODB_SLAVE_OKAY = False
+    MONGODB_USERNAME = None
+    MONGODB_PASSWORD = None
+
 
 class ProdConfig(Config):
     '''Production configuration.'''
