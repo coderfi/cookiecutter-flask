@@ -66,6 +66,10 @@ BSD licensed.
 Changelog
 ---------
 
+0.3.x (03/03/2014)
+
+- added Flask-MongoKit support
+
 0.3.2 (02/26/2014)
 ******************
 
