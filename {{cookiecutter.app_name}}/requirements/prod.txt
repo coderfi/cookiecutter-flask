@@ -38,3 +38,9 @@ Flask-Bcrypt>=0.5.2
 
 # Caching
 Flask-Cache>=0.12
+
+Tornado
+
+git+git://github.com/coderfi/wtforms-morefields.git
+tornado==2.4.1
+
