@@ -9,6 +9,7 @@ from {{cookiecutter.app_name}}.extensions import (db, login_manager, migrate,
                                                   dbm, cache)
 from {{cookiecutter.app_name}} import public, user, task
 
+from bson import ObjectId
 
 def create_app(config_object=ProdConfig):
     '''An application factory, as explained here:
@@ -51,19 +52,20 @@ def register_errorhandlers(app):
         app.errorhandler(errcode)(render_error)
     return None
 
-#class CustomJSONEncoder(json.JSONEncoder):
-#    def default(self, obj):
-#        try:
-#            ...
-#            if something:
-#                return some iterable
-#            iterable = iter(obj)
-#        except TypeError:
-#            pass
-#        else:
-#            return list(iterable)
-#        return json.JSONEncoder.default(self, obj)
+
+class ObjectIdJSONEncoder(json.JSONEncoder):
+    """ If a ``bson.ObjectId`` return it as the hex string equivalent """"
+    def default(self, obj):
+        try:
+            if isinstance(obj, ObjectId):
+                return str(obj)
+            iterable = iter(obj)
+        except TypeError:
+            pass
+        else:
+            return list(iterable)
+        return json.JSONEncoder.default(self, obj)
+
 
 def register_customjsonencoder(app):
-    #app.json_encoder = CustomJSONEncoder
-    pass
+    app.json_encoder = ObjectIdJSONEncoder
