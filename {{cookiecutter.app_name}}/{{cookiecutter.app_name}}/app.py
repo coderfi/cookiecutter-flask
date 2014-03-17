@@ -31,7 +31,7 @@ def register_extensions(app):
     dbm.init_app(app)
     login_manager.init_app(app)
     assets.init_app(app)
-    if app.config.DEBUG_TB_ENABLED:
+    if app.config['DEBUG_TB_ENABLED']:
         DebugToolbarExtension(app)
     cache.init_app(app)
     migrate.init_app(app, db)
