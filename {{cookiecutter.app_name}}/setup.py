@@ -8,12 +8,12 @@ import sys
 
 
 REQUIREMENTS = [i.strip() for i in open("requirements/prod.txt").readlines()
-                        if not (i.startswith("http") or i.startswith('#'))]
+                        if not (i.startswith("http") or i.startswith('#') or i.startswith('git'))]
 
 dependency_links = [i.strip() for i in open("requirements/prod.txt").readlines()
-                            if i.startswith("http")]
+                            if (i.startswith("http") or i.startswith('git'))]
 
-if len(sys.argv) > 1 and sys.argv[1] == 'develop':
+if (len(sys.argv) > 1 and sys.argv[1] == 'develop') or os.environ.get('{{cookiecutter.app_name}}_ENV') == 'dev':
     #add in the dev requirements
     REQUIREMENTS += [i.strip() for i in open("requirements/dev.txt").readlines()
                         if not (i.startswith("http") or i.startswith('-') or i.startswith('#'))]

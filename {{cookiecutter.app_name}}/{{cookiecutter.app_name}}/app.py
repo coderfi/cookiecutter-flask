@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''The app module, containing the app factory function.'''
-from flask import Flask, render_template
+from flask import Flask, render_template, json
 from flask_debugtoolbar import DebugToolbarExtension
 
 from {{cookiecutter.app_name}}.settings import ProdConfig
@@ -21,6 +21,7 @@ def create_app(config_object=ProdConfig):
     register_extensions(app)
     register_blueprints(app)
     register_errorhandlers(app)
+    register_customjsonencoder(app)
     return app
 
 
@@ -29,7 +30,8 @@ def register_extensions(app):
     dbm.init_app(app)
     login_manager.init_app(app)
     assets.init_app(app)
-    toolbar = DebugToolbarExtension(app)
+    if app.config.DEBUG_TB_ENABLED:
+        DebugToolbarExtension(app)
     cache.init_app(app)
     migrate.init_app(app, db)
     return None
@@ -48,3 +50,20 @@ def register_errorhandlers(app):
     for errcode in [401, 404, 500]:
         app.errorhandler(errcode)(render_error)
     return None
+
+#class CustomJSONEncoder(json.JSONEncoder):
+#    def default(self, obj):
+#        try:
+#            ...
+#            if something:
+#                return some iterable
+#            iterable = iter(obj)
+#        except TypeError:
+#            pass
+#        else:
+#            return list(iterable)
+#        return json.JSONEncoder.default(self, obj)
+
+def register_customjsonencoder(app):
+    #app.json_encoder = CustomJSONEncoder
+    pass
