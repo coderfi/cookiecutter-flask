@@ -18,10 +18,15 @@ class Config(object):
     MONGODB_USERNAME = None
     MONGODB_PASSWORD = None
 
-    #see http://www.tornadoweb.org/en/branch2.2/_modules/tornado/httpserver.html
+    # use the LB/proxy's X-REAL-IP and X-SCHEME and X-FORWARDED-PROTO
+    # and X-FORWARDED-FOR
     SERVER_XHEADERS = True
-    SERVER_PROCESSES = None #None: disable prefork, 0: auto
 
+    # number of pre fork processes
+    # None: disable prefork
+    # 0: auto
+    SERVER_PROCESSES = None
+    
 
 class ProdConfig(Config):
     '''Production configuration.'''
