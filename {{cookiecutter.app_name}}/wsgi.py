@@ -22,7 +22,9 @@ def main(argv=None):
 
     print("Listening on 0.0.0.0:%d" % port)
     http_server = HTTPServer(WSGIContainer(app))
-    http_server.listen(port)
+    http_server.bind(port)
+    #Pre-forks N child process, where N is number of cpu cores
+    http_server.start()
     IOLoop.instance().start()
 
     return 0
