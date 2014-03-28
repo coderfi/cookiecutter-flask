@@ -18,6 +18,10 @@ class Config(object):
     MONGODB_USERNAME = None
     MONGODB_PASSWORD = None
 
+    #see http://www.tornadoweb.org/en/branch2.2/_modules/tornado/httpserver.html
+    SERVER_XHEADERS = True
+    SERVER_PROCESSES = None #None: disable prefork, 0: auto
+
 
 class ProdConfig(Config):
     '''Production configuration.'''
@@ -25,6 +29,7 @@ class ProdConfig(Config):
     DEBUG = False
     SQLALCHEMY_DATABASE_URI = 'postgresql://localhost/example'
     DEBUG_TB_ENABLED = False  # Disable Debug toolbar
+    SERVER_PROCESSES = 0 #start up as many processes as CPU cores
 
 
 class DevConfig(Config):
