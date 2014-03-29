@@ -24,7 +24,11 @@ class Config(object):
 
     # number of pre fork processes
     # None: disable prefork
-    # 0: auto
+    # 0: auto (number of cpu cores)
+    # Note: if running behind a proxy like NGINX or APACHE
+    # it is probably better to disable prefork
+    # i.e. explicitly run N separate Tornado instances
+    # behind the proxy
     SERVER_PROCESSES = None
     
 
