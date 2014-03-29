@@ -25,11 +25,13 @@ def main(argv=None):
                              xheaders=app.config.get('SERVER_XHEADERS', False))
                              
     processes = app.config.get('SERVER_PROCESSES', 0)
-    http_server.bind(port)
     if processes is not None:
         # Pre-forks N child process, where N is number of cpu cores
+        http_server.bind(port)
         http_server.start(processes)
-
+    else:
+        http_server.listen(port)
+        
     IOLoop.instance().start()
 
     return 0
